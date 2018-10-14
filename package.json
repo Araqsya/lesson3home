@@ -1,0 +1,22 @@
+{
+  "name": "lesson3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Araqsya/lesson3.git"
+  },
+  "author": "Araqsya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Araqsya/lesson3/issues"
+  },
+  "homepage": "https://github.com/Araqsya/lesson3#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
