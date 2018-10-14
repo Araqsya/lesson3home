@@ -21,7 +21,7 @@ module.exports=class Male  extends  LivingCreature1 {
        return super.chooseCell(character);
    }
 
-    die() {
+    die(matrix, MaleArr) {
 
         for (var i in MaleArr) {
             if (this.x == MaleArr[i].x && this.y == MaleArr[i].y) {
@@ -31,9 +31,9 @@ module.exports=class Male  extends  LivingCreature1 {
         }
         matrix[this.y][this.x] = 0
     }
-    move() {
+    move(matrix) {
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
         if (newCell) {
             var y = newCell[1]
             var x = newCell[0]
@@ -47,9 +47,9 @@ module.exports=class Male  extends  LivingCreature1 {
             }
         }
     }
-    eat() {
-        var emptyCells = this.chooseCell(5);
-        var newCell = random(emptyCells);
+    eat(matrix, PredatorArr,grassArr,GrassEaterArr,BirdArr,EggArr) {
+        var emptyCells = this.chooseCell(5, matrix);
+        var newCell = this.random(emptyCells);
         if (newCell) {
             var x = newCell[0]
             var y = newCell[1]
@@ -67,7 +67,7 @@ module.exports=class Male  extends  LivingCreature1 {
         }
 
         var emptyCells = this.chooseCell(4);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
         if (newCell) {
             var x = newCell[0]
             var y = newCell[1]
@@ -85,7 +85,7 @@ module.exports=class Male  extends  LivingCreature1 {
         }
 
         var emptyCells = this.chooseCell(3);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
         if (newCell) {
             var x = newCell[0]
             var y = newCell[1]
@@ -103,7 +103,7 @@ module.exports=class Male  extends  LivingCreature1 {
         }
 
         var emptyCells = this.chooseCell(2);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
         if (newCell) {
             var x = newCell[0]
             var y = newCell[1]
@@ -121,7 +121,7 @@ module.exports=class Male  extends  LivingCreature1 {
         }
 
         var emptyCells = this.chooseCell(1);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
         if (newCell) {
             var x = newCell[0]
             var y = newCell[1]
@@ -138,7 +138,7 @@ module.exports=class Male  extends  LivingCreature1 {
             }
         }
         else {
-            this.move();
+            this.move(matrix);
 
         }
     }

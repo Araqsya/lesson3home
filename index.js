@@ -1,3 +1,39 @@
+var grassArr = [];
+var GrassEaterArr = [];
+var PredatorArr = [];
+var BirdArr = [];
+var EggArr = [];
+var MaleArr = [];
+var FemaleArr = [];
+var matrix = createMatrix(100, 100);
+function createMatrix(n, m) {
+    var matrix1 = [];
+    for (var y = 0; y < m; y++) {
+        matrix1[y] = [];
+        for (var x = 0; x < n; x++) {
+            matrix1[y][x] = Math.round(Math.random())
+        }
+    }
+    matrix1[89][15] = 2;
+    matrix1[8][99] = 2;
+    matrix1[5][55] = 2;
+    matrix1[87][63] = 2;
+    matrix1[31][75] = 2;
+    matrix1[22][63] = 2;
+    matrix1[92][5] = 3;
+    matrix1[5][88] = 3;
+    matrix1[30][49] = 3;
+    matrix1[99][9] = 3;
+    matrix1[5][0] = 3;
+    matrix1[0][99] = 5;
+    matrix1[99][99] = 5;
+    matrix1[0][0] = 5;
+    matrix1[99][0] = 5;
+    matrix1[51][45] = 6;
+    matrix1[49][45] = 6;
+    matrix1[50][46] = 7;
+    return matrix1;
+}
 var Grass = require("./grass")
 function mygrass() {
     console.log("grass=1")
@@ -33,42 +69,6 @@ function myfemale() {
     console.log("female=7")
 }
 myfemale()
-function createMatrix(n, m) {
-    var matrix1 = [];
-    for (var y = 0; y < m; y++) {
-        matrix1[y] = [];
-        for (var x = 0; x < n; x++) {
-            matrix1[y][x] = Math.round(Math.random())
-        }
-    }
-    matrix1[89][15] = 2;
-    matrix1[8][99] = 2;
-    matrix1[5][55] = 2;
-    matrix1[87][63] = 2;
-    matrix1[31][75] = 2;
-    matrix1[22][63] = 2;
-    matrix1[92][5] = 3;
-    matrix1[5][88] = 3;
-    matrix1[30][49] = 3;
-    matrix1[99][9] = 3;
-    matrix1[5][0] = 3;
-    matrix1[0][99] = 5;
-    matrix1[99][99] = 5;
-    matrix1[0][0] = 5;
-    matrix1[99][0] = 5;
-    matrix1[51][45] = 6;
-    matrix1[49][45] = 6;
-    matrix1[50][46] = 7;
-    return matrix1;
-}
-var grassArr = [];
-var GrassEaterArr = [];
-var PredatorArr = [];
-var BirdArr = [];
-var EggArr = [];
-var MaleArr = [];
-var FemaleArr = [];
-var matrix = createMatrix(100, 100);
 for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
         if (matrix[y][x] == 1) {
@@ -124,27 +124,27 @@ setInterval(function () {
         }
     };
     for (var i in grassArr) {
-        grassArr[i].mul(matrix);
+        grassArr[i].mul(matrix, grassArr);
     }
     for (var i in GrassEaterArr) {
-        GrassEaterArr[i].eat(matrix);
+        GrassEaterArr[i].eat(matrix,grassArr,GrassEaterArr);
     }
 
     for (var i in PredatorArr) {
-        PredatorArr[i].eat(matrix);
+        PredatorArr[i].eat(matrix,GrassEaterArr, PredatorArr);
     }
 
     for (var i in BirdArr) {
-        BirdArr[i].eat(matrix);
+        BirdArr[i].eat(matrix,BirdArr, PredatorArr);
     }
     for (var i in EggArr) {
-        EggArr[i].mul(matrix);
+        EggArr[i].mul(matrix, EggArr, BirdArr);
     }
     for (var i in MaleArr) {
-        MaleArr[i].eat(matrix);
+        MaleArr[i].eat(matrix, MaleArr, PredatorArr,grassArr,GrassEaterArr,BirdArr,EggArr);
     }
     for (var i in FemaleArr) {
-        FemaleArr[i].eat(matrix);
+        FemaleArr[i].eat(matrix, FemaleArr, PredatorArr,grassArr,GrassEaterArr,BirdArr,EggArr );
     }
 
 

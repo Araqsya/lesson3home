@@ -21,7 +21,7 @@ module.exports=class Egg extends  LivingCreature1 {
        this.getNewCoordinates();
        return super.chooseCell(character);
    }
-    transform() {
+    transform(matrix, EggArr, BirdArr) {
         for (var i in EggArr) {
             if (this.x == EggArr[i].x && this.y == EggArr[i].y) {
                 EggArr.splice(i, 1);
@@ -32,10 +32,10 @@ module.exports=class Egg extends  LivingCreature1 {
             BirdArr.push(newBird);
         }
     }
-    mul() {
+    mul(matrix, EggArr) {
         this.multiply++;
-        var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var emptyCells = this.chooseCell(0, matrix);
+        var newCell = this.random(emptyCells);
         if (this.multiply >= 11 && newCell) {
             var newEgg = new Egg(newCell[0], newCell[1], this.index);
             EggArr.push(newEgg);
