@@ -1,7 +1,7 @@
 var LivingCreature1= require("./livingcreature")
 module.exports=class Predator extends  LivingCreature1 {
    constructor(x, y, index){
-        super(x, y, index);
+        super(x, y, index, matrix);
         this.energy = 20;
     }
     getNewCoordinates() {
@@ -21,6 +21,7 @@ module.exports=class Predator extends  LivingCreature1 {
        return super.chooseCell(character);
    }
     move(matrix) {
+        matrix=this.matrix
         var emptyCells = this.chooseCell(0);
         var newCell = this.random(emptyCells);
         if (newCell) {
@@ -36,7 +37,8 @@ module.exports=class Predator extends  LivingCreature1 {
             }
         }
     }
-    mul(matrix, PredatorArr) {
+    mul(matrix, PredatorArr=this.PredatorArr) {
+        matrix=this.matrix
         var emptyCells = this.chooseCell(0);
         var newCell = this.random(emptyCells);
         if (this.energy >= 22) {
@@ -46,8 +48,8 @@ module.exports=class Predator extends  LivingCreature1 {
             this.energy = 12;
         }
     }
-    die(matrix, PredatorArr) {
-
+    die(matrix, PredatorArr=this.PredatorArr) {
+        matrix=this.matrix
         for (var i in PredatorArr) {
             if (this.x == PredatorArr[i].x && this.y == PredatorArr[i].y) {
                 PredatorArr.splice(i, 1);
@@ -56,8 +58,9 @@ module.exports=class Predator extends  LivingCreature1 {
         }
         matrix[this.y][this.x] = 0
     }
-    eat(matrix, PredatorArr, GrassEaterArr ) {
-        var emptyCells = this.chooseCell(2, matrix, PredatorArr, GrassEaterArr);
+    eat(matrix, PredatorArr=this.PredatorArr, GrassEaterArr=this.GrassEaterArr) {
+        matrix=this.matrix
+        var emptyCells = this.chooseCell(2, matrix, PredatorArr=this.PredatorArr, GrassEaterArr=this.GrassEaterArr);
         var newCell = this.random(emptyCells);
         if (newCell) {
             var x = newCell[0]
@@ -73,9 +76,9 @@ module.exports=class Predator extends  LivingCreature1 {
                     break;
                 }
             }
-            this.mul(matrix);
+            this.mul(matrix=this.matrix);
         } else {
-            this.move(matrix);
+            this.move(matrix=this.matrix);
         }
     }
 }

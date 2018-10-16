@@ -1,3 +1,4 @@
+var Bird = require("./bird")
 var LivingCreature1= require("./livingcreature")
 module.exports=class Egg extends  LivingCreature1 {
    constructor(x, y, index){
@@ -21,7 +22,7 @@ module.exports=class Egg extends  LivingCreature1 {
        this.getNewCoordinates();
        return super.chooseCell(character);
    }
-    transform(matrix, EggArr, BirdArr) {
+    transform(matrix=this.matrix, EggArr=this.EggArr, BirdArr=this.BirdArr) {
         for (var i in EggArr) {
             if (this.x == EggArr[i].x && this.y == EggArr[i].y) {
                 EggArr.splice(i, 1);
@@ -32,7 +33,7 @@ module.exports=class Egg extends  LivingCreature1 {
             BirdArr.push(newBird);
         }
     }
-    mul(matrix, EggArr) {
+    mul(matrix=this.matrix, EggArr=this.EggArr) {
         this.multiply++;
         var emptyCells = this.chooseCell(0, matrix);
         var newCell = this.random(emptyCells);

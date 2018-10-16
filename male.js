@@ -21,7 +21,7 @@ module.exports=class Male  extends  LivingCreature1 {
        return super.chooseCell(character);
    }
 
-    die(matrix, MaleArr) {
+    die(matrix=this.matrix, MaleArr=this.MaleArr) {
 
         for (var i in MaleArr) {
             if (this.x == MaleArr[i].x && this.y == MaleArr[i].y) {
@@ -31,7 +31,7 @@ module.exports=class Male  extends  LivingCreature1 {
         }
         matrix[this.y][this.x] = 0
     }
-    move(matrix) {
+    move(matrix=this.matrix) {
         var emptyCells = this.chooseCell(0);
         var newCell = this.random(emptyCells);
         if (newCell) {
@@ -47,7 +47,7 @@ module.exports=class Male  extends  LivingCreature1 {
             }
         }
     }
-    eat(matrix, PredatorArr,grassArr,GrassEaterArr,BirdArr,EggArr) {
+    eat(matrix=this.matrix, PredatorArr=this.PredatorArr,grassArr=this.grassArr,GrassEaterArr=this.GrassEaterArr,BirdArr=this.BirdArr,EggArr=this.EggArr) {
         var emptyCells = this.chooseCell(5, matrix);
         var newCell = this.random(emptyCells);
         if (newCell) {
@@ -138,7 +138,7 @@ module.exports=class Male  extends  LivingCreature1 {
             }
         }
         else {
-            this.move(matrix);
+            this.move(matrix=this.matrix);
 
         }
     }

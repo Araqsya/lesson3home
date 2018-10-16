@@ -1,9 +1,24 @@
+var grassArr =require("./grassArr")
+var GrassEaterArr =require("./GrassEaterArr");
+var PredatorArr =require("./PredatorArr");
+var BirdArr =require("./BirdArr");
+var EggArr =require("./EggArr");
+var MaleArr =require("./MaleArr");
+var FemaleArr =require("./FemaleArr");
 module.exports = class LivingCreature {
-    constructor(x, y, index) {
+    constructor(x, y, index, FemaleArr, MaleArr, grassArr, GrassEaterArr, PredatorArr, EggArr, BirdArr) {
+        this.matrix = require("./index.js")
         this.x = x;
         this.y = y;
         this.multiply = 0;
         this.index = index;
+        this.FemaleArr=FemaleArr;
+        this.MaleArr=MaleArr;
+        this.grassArr=grassArr;
+        this.GrassEaterArr=GrassEaterArr;
+        this.PredatorArr=PredatorArr
+        this.EggArr=EggArr
+        this.BirdArr=BirdArr
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -16,7 +31,7 @@ module.exports = class LivingCreature {
         ];
 
     }
-    chooseCell(ch, matrix) {
+    chooseCell(ch, matrix = this.matrix) {
         var found = [];
         for (var i in this.directions) {
             var x = this.directions[i][0];

@@ -1,3 +1,4 @@
+var Male = require("./male")
 var LivingCreature1= require("./livingcreature")
 module.exports=class Female  extends  LivingCreature1{
    constructor(x, y, index){
@@ -20,7 +21,7 @@ module.exports=class Female  extends  LivingCreature1{
        this.getNewCoordinates();
        return super.chooseCell(character);
    }
-    die(matrix, FemaleArr) {
+    die(matrix=this.matrix, FemaleArr=this.FemaleArr) {
 
         for (var i in FemaleArr) {
             if (this.x == FemaleArr[i].x && this.y == FemaleArr[i].y) {
@@ -30,7 +31,7 @@ module.exports=class Female  extends  LivingCreature1{
         }
         matrix[this.y][this.x] = 0
     }
-    move(matrix) {
+    move(matrix=this.matrix) {
         var emptyCells = this.chooseCell(0);
         var newCell = this.random(emptyCells);
         if (newCell) {
@@ -46,7 +47,7 @@ module.exports=class Female  extends  LivingCreature1{
             }
         }
     }
-    mul(matrix, FemaleArr, MaleArr) {
+    mul(matrix=this.matrix=this.matrix, FemaleArr=this.FemaleArr, MaleArr=this.MaleArr) {
         var emptyCells = this.chooseCell(6);
         var Man2 = this.random(emptyCells);
         if (Man2) {
@@ -56,19 +57,19 @@ module.exports=class Female  extends  LivingCreature1{
             var a = Math.round(Math.random())
             if (a == 1) {
                 var newFemale = new Female(newCell[0], newCell[1], this.index);
-                FemaleArr.push(newFemale);
+                this.FemaleArr.push(newFemale);
                 matrix[newCell[1]][newCell[0]] == 6;
                 this.energy = 12;
             }
             else {
                 var newMale = new Male(newCell[0], newCell[1], this.index);
-                MaleArr.push(newMale);
+                this.MaleArr.push(newMale);
                 matrix[newCell[1]][newCell[0]] == 7;
                 this.energy = 12;
             }
         }
     }
-    eat(matrix, PredatorArr,grassArr,GrassEaterArr,BirdArr,EggArr) {
+    eat(matrix=this.matrix, PredatorArr=this.PredatorArr,grassArr=this.grassArr,GrassEaterArr=this.GrassEaterArr,BirdArr=this.BirdArr,EggArr=this.EggArr) {
         var emptyCells = this.chooseCell(5, matrix);
         var newCell = this.random(emptyCells);
         if (newCell) {
@@ -103,7 +104,7 @@ module.exports=class Female  extends  LivingCreature1{
                     break;
                 }
             }
-            this.mul(matrix, FemaleArr, MaleArr);
+            this.mul(matrix=this.matrix, FemaleArr=this.FemaleArr, MaleArr=this.MaleArr);
         }
 
         var emptyCells = this.chooseCell(3);
@@ -122,7 +123,7 @@ module.exports=class Female  extends  LivingCreature1{
                     break;
                 }
             }
-            this.mul(matrix, FemaleArr, MaleArr);
+            this.mul(matrix=this.matrix, FemaleArr=this.FemaleArr, MaleArr=this.MaleArr);
         }
 
         var emptyCells = this.chooseCell(2);
@@ -141,7 +142,7 @@ module.exports=class Female  extends  LivingCreature1{
                     break;
                 }
             }
-            this.mul(matrix, FemaleArr, MaleArr);
+            this.mul(matrix=this.matrix, FemaleArr=this.FemaleArr, MaleArr=this.MaleArr);
         }
 
         var emptyCells = this.chooseCell(1);
@@ -160,10 +161,10 @@ module.exports=class Female  extends  LivingCreature1{
                     break;
                 }
             }
-            this.mul(matrix, FemaleArr, MaleArr);
+            this.mul(matrix=this.matrix, FemaleArr=this.FemaleArr, MaleArr=this.MaleArr);
         }
         else {
-            this.move(matrix);
+            this.move(matrix=this.matrix);
 
         }
     }
