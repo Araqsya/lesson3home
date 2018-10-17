@@ -14,27 +14,27 @@ function createMatrix(n, m) {
             matrix1[y][x] = Math.round(Math.random())
         }
     }
-    matrix1[89][15] = 2;
-    matrix1[8][99] = 2;
-    matrix1[5][55] = 2;
-    matrix1[87][63] = 2;
-    matrix1[31][75] = 2;
-    matrix1[22][63] = 2;
-    matrix1[92][5] = 3;
-    matrix1[5][88] = 3;
-    matrix1[30][49] = 3;
-    matrix1[99][9] = 3;
+    matrix1[19][15] = 2;
+    matrix1[8][9] = 2;
+    matrix1[5][7] = 2;
+    matrix1[7][3] = 2;
+    matrix1[11][5] = 2;
+    matrix1[2][13] = 2;
+    matrix1[12][5] = 3;
+    matrix1[1][8] = 3;
+    matrix1[10][9] = 3;
+    matrix1[14][18] = 3;
     matrix1[5][0] = 3;
-    matrix1[0][99] = 5;
-    matrix1[99][99] = 5;
+    matrix1[0][9] = 5;
+    matrix1[9][9] = 5;
     matrix1[0][0] = 5;
-    matrix1[99][0] = 5;
-    matrix1[51][45] = 6;
-    matrix1[49][45] = 6;
-    matrix1[50][46] = 7;
+    matrix1[9][0] = 5;
+    matrix1[11][5] = 6;
+    matrix1[9][5] = 6;
+    matrix1[10][6] = 7;
     return matrix1;
 }
-module.exports=matrix = createMatrix(100, 100);
+module.exports=matrix = createMatrix(20, 20);
 var LivingCreature1= require("./livingcreature")
 var Grass = require("./grass")
 function mygrass() {
@@ -97,74 +97,28 @@ for (var y = 0; y < matrix.length; y++) {
         }
     }
 }
-var p5=require("p5");
-function setup(side) {
-    p5.frameRate(16);
-    p5.createCanvas(matrix[0].length * side, matrix.length * side, );
-    p5.background('#acacac');}
-    setup(5);
-    function draw() {
-        for (var y = 0; y < matrix.length; y++) {
-            for (var x = 0; x < matrix[y].length; x++) {
-                if (matrix[y][x] == 1) {
-                    p5.fill('green');
-                    p5.rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 2) {
-                    p5.fill('yellow');
-                    p5.rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 3) {
-                    p5.fill('red');
-                    p5.rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 4) {
-                    p5.fill('purple');
-                    p5.rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 5) {
-                    p5.fill('orange');
-                    p5.rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 6) {
-                    p5.fill('#0000CD');
-                    p5.rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 7) {
-                    p5.fill('#FF00FF');
-                    p5.rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 0) {
-                    p5.fill('#acacac');
-                    p5.rect(x * side, y * side, side, side);
-                }
-            }
-        }
-        for (var i in grassArr) {
-            grassArr[i].mul();
-        }
-        for (var i in GrassEaterArr) {
-            GrassEaterArr[i].eat();
-        }
-    
-        for (var i in PredatorArr) {
-            PredatorArr[i].eat();
-        }
-    
-        for (var i in BirdArr) {
-            BirdArr[i].eat();
-        }
-        for (var i in EggArr) {
-            EggArr[i].mul();
-        }
-        for (var i in MaleArr) {
-            MaleArr[i].eat();
-        }
-        for (var i in FemaleArr) {
-            FemaleArr[i].eat();
-        }
-    
-    
+setInterval(function(){ console.log(matrix);
+    for (var i in grassArr) {
+        grassArr[i].mul();
     }
-    draw();
-    
+    for (var i in GrassEaterArr) {
+        GrassEaterArr[i].eat();
+    }
+
+    for (var i in PredatorArr) {
+        PredatorArr[i].eat();
+    }
+
+    for (var i in BirdArr) {
+        BirdArr[i].eat();
+    }
+    for (var i in EggArr) {
+        EggArr[i].mul();
+    }
+    for (var i in MaleArr) {
+        MaleArr[i].eat();
+    }
+    for (var i in FemaleArr) {
+        FemaleArr[i].eat();
+    }
+}, 1000);

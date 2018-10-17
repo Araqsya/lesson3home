@@ -1,7 +1,7 @@
 var LivingCreature1= require("./livingcreature")
 module.exports=class Predator extends  LivingCreature1 {
-   constructor(x, y, index){
-        super(x, y, index, matrix);
+   constructor(x, y, index, FemaleArr, MaleArr, grassArr, GrassEaterArr, PredatorArr, EggArr, BirdArr){
+        super(x, y, index, matrix, FemaleArr, MaleArr, grassArr, GrassEaterArr, PredatorArr, EggArr, BirdArr);
         this.energy = 20;
     }
     getNewCoordinates() {

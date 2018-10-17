@@ -1,8 +1,8 @@
 var Male = require("./male")
 var LivingCreature1= require("./livingcreature")
 module.exports=class Female  extends  LivingCreature1{
-   constructor(x, y, index){
-        super(x, y, index);
+   constructor(x, y, index, FemaleArr, MaleArr, grassArr, GrassEaterArr, PredatorArr, EggArr, BirdArr){
+        super(x, y, index, FemaleArr, MaleArr, grassArr, GrassEaterArr, PredatorArr, EggArr, BirdArr);
         this.energy = 20;
     }
     getNewCoordinates() {

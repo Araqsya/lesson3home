@@ -1,8 +1,8 @@
 var Bird = require("./bird")
 var LivingCreature1= require("./livingcreature")
 module.exports=class Egg extends  LivingCreature1 {
-   constructor(x, y, index){
-        super(x, y, index);
+   constructor(x, y, index, FemaleArr, MaleArr, grassArr, GrassEaterArr, PredatorArr, EggArr, BirdArr){
+        super(x, y, index, FemaleArr, MaleArr, grassArr, GrassEaterArr, PredatorArr, EggArr, BirdArr);
         this.multiply = 0;
         this.N = 1;
     }
